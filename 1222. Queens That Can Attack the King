@@ -1,0 +1,36 @@
+/*
+On an 8x8 chessboard, there can be multiple Black Queens and one White King.
+
+Given an array of integer coordinates queens that 
+represents the positions of the Black Queens, 
+and a pair of coordinates king that represent the position of the White King,
+return the coordinates of all the queens (in any order) that can attack the King.
+*/
+
+class Solution {
+    public List<List<Integer>> queensAttacktheKing(int[][] queens, int[] king) {
+        List<List<Integer>> res = new LinkedList<>();
+        int king_pointX = king[0];
+        int king_pointY = king[1];
+        boolean[][] flag = new boolean[8][8];
+        for(int[] queen: queens){
+            flag[queen[0]][queen[1]]=true;
+        }
+        int[][] directions ={{0,1},{0,-1},{1,0},{-1,0},{1,1},{1,-1},{-1,1},{-1,-1}};
+        for(int i = 0; i < directions.length;i++){
+            int x = king_pointX;
+            int y = king_pointY;
+            for(; (x<8&&x>=0)&&(y>=0&&y<8);x+=directions[i][0], y+=directions[i][1])
+            {
+                if(flag[x][y]==true){
+                    res.add(Arrays.asList(x,y));
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+}
+
+
+
