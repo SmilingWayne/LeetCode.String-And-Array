@@ -1,0 +1,21 @@
+/*Given a positive integer num, output its complement number. 
+The complement strategy is to flip the bits of its binary representation.
+Input num = 5; =101
+OutPut num = 2; =010
+
+*/
+
+
+
+class Solution {
+     public int findComplement(int num) {
+        String complementStr = "";
+        String binaryStr = Integer.toBinaryString(num);
+        for (int i = 0; i < binaryStr.length(); i++) {
+            complementStr += binaryStr.charAt(i) ^ '1';
+        }
+        return Integer.parseInt(complementStr, 2);
+    }
+}
+
+//Integer.parseInt(complementStr,2)作用是：将一个二进制字符串还原成Integer类型的十进制数》
