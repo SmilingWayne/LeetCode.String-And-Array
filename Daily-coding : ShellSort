@@ -1,0 +1,40 @@
+/*shellsort一共有3个for循环，第一次遍历所有可能的组数，第二次遍历每种情况下的每一个组，第三次是针对一个大组不断地类似冒泡的排序，将小的放到前面，大的丢到后面*/
+
+/*再次模拟一下希尔排序：
+8 9 1 7 2 3 5 4 6 0
+3 5 1 6 0 8 9 4 7 2
+
+接下来是2开始的，假设少一个for循环
+
+1 5 0 6 3 4 7 2 9 8，以0为例，在2组每组5个数字的情况下，少一个循环实际上就是只操作了每组最后两个数字
+少了另外前面可能需要被调到前面去的数字了；
+
+会造成这种情况。
+一定需要一直遍历直到这个每个数字都是有序的。
+*/
+
+Java.Version1:
+
+package shellSort;
+import java.util.*;
+public class shellsort {
+    public static void main(String[] args){
+        int[] hello = {8,9,1,7,2,3,5,4,6,0};
+        sortway1(hello);
+        System.out.print(Arrays.toString(hello));
+
+    }
+    public static void sortway1(int[] m){
+        int length = m.length;
+        for(int interval = length / 2 ; interval > 0; interval/=2){
+            for(int i = interval; i < length; i++){
+                for(int j = i - interval; j >=0; j -=interval){
+                    if(m[j] > m[j+interval]){
+                        int temp = m[j];
+                        m[j] = m[j + interval];
+                        m[j + interval] = temp;
+                    }
+                }
+            }
+        }
+    }
