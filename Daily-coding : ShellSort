@@ -38,3 +38,19 @@ public class shellsort {
             }
         }
     }
+     public static void sortway2(int[] m ){
+        for(int gap = m.length/2; gap > 0; gap/=2){
+            for(int i = gap; i < m.length; i++){
+                int j = i;
+                int temp = m[j];
+                if(m[j] < m[j - gap]){
+                    while(j - gap >=0 && temp < m[j - gap]){
+                        m [j] = m[j - gap];
+                        j-=gap;
+                    }
+                    m[j] = temp;
+                }
+            }
+        }
+    }
+    //这里是把插入排序和希尔排序结合在一起了
